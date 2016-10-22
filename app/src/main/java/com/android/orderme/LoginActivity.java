@@ -48,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Button mEmailSignInButton;
+    private TextView errorLog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
+        errorLog = (TextView) findViewById(R.id.errorLog);
+        errorLog.setVisibility(View.INVISIBLE);
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -68,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,12 +125,25 @@ public class LoginActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            Intent i = new Intent(getApplicationContext(), WelcomeActitvity.class);
-            startActivity(i);
+            if (authentication(email, password)) {
+                //showProgress(true);
+                Intent i = new Intent(getApplicationContext(), WelcomeActitvity.class);
+                startActivity(i);
+            } else {
+                errorLog.setVisibility(View.VISIBLE);
+                errorLog.setText("Email and password is incorrect.");
+                mEmailSignInButton.setError("Email and password is incorrect.");
+                Toast.makeText(LoginActivity.this, "Email and password is incorrect.", Toast.LENGTH_LONG);
+            }
         }
+    }
+
+    private boolean authentication(String email, String password) {
+        //TODO: hardcode
+        if ("minhhoang@gmail.com".equals(email) && "12345678".equals(password)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isEmailValid(String email) {
@@ -142,7 +159,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Shows the progress UI and hides the login form.
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    /*@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
@@ -173,15 +190,6 @@ public class LoginActivity extends AppCompatActivity {
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
-    }
-
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
-        mEmailView.setAdapter(adapter);
-    }
+    }*/
 }
 
