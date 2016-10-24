@@ -32,6 +32,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.client.OrderMeAPIWrapper;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -46,8 +48,6 @@ public class LoginActivity extends AppCompatActivity {
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
     private Button mEmailSignInButton;
     private TextView errorLog;
 
@@ -80,8 +80,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
     }
 
     /**
@@ -140,6 +138,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean authentication(String email, String password) {
         //TODO: hardcode
+        /*OrderMeAPIWrapper wrapper = new OrderMeAPIWrapper();
+        wrapper.login();*/
         if ("minhhoang@gmail.com".equals(email) && "12345678".equals(password)) {
             return true;
         }
