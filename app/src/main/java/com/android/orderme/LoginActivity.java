@@ -118,12 +118,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean authentication(String email, String password) {
-        //TODO: hardcode
-        boolean flag = UserService.authenticate(getApplicationContext(), email, password);
-        if ("minhhoang@gmail.com".equals(email) && "12345678".equals(password)) {
-            return true;
-        }
-        return false;
+        return UserService.authenticate(getApplicationContext(), email, password);
     }
 
     private boolean isEmailValid(String email) {

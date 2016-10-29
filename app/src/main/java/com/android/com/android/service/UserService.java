@@ -3,42 +3,60 @@ package com.android.com.android.service;
 import android.content.Context;
 
 import com.android.entity.User;
+import com.android.utils.API;
+import com.google.gson.Gson;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.logging.Logger;
+
 /**
  * Created by Hoang on 10/29/16.
  */
 
-public class UserService extends RestService {
+public class UserService {
 
-    private static final String CLASS_API = ROOT_API + "user/";
+    private static User user;
+    private static boolean res;
+    private static Logger logger = Logger.getLogger("UserService");
 
     public static boolean authenticate(Context context, String email, String password) {
 
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setIsOutOfSync(false);
+        User userReq = new User();
+        userReq.setEmail(email);
+        userReq.setPassword(password);
 
         Ion.with(context)
-                .load(CLASS_API + "login")
-                .setJsonPojoBody(user)
+                .load(API.LOGIN)
+                .setJsonPojoBody(userReq)
                 .asString().setCallback(new FutureCallback<String>() {
             @Override
             public void onCompleted(Exception e, String result) {
                 try {
-                    System.err.print(result);
+                    if (e != null || result == null) {
+                        res = false;
+                        logger.severe("Fail to login");
+                        return;
+                    }
+                    Gson gson = new Gson();
+                    user = gson.fromJson(result, User.class);
+                    if (user != null) {
+                        res = true;
+                        logger.info("Called API and login successfully");
+                    }
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    res = false;
+                    logger.severe("Fail to login. Exception occurred");
                 }
             }
         });
 
-        return false;
+        //TODO: set name to sharePreference (Session management)
+
+        return res;
     }
 
 }
