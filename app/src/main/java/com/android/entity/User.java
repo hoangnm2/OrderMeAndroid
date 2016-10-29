@@ -80,7 +80,7 @@ public class User {
 		return isOutOfSync;
 	}
 
-	public void setOutOfSync(boolean isOutOfSync) {
+	public void setIsOutOfSync(boolean isOutOfSync) {
 		this.isOutOfSync = isOutOfSync;
 	}
 

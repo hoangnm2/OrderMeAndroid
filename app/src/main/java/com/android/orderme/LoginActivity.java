@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.com.android.service.UserService;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
@@ -118,19 +119,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean authentication(String email, String password) {
         //TODO: hardcode
-        Ion.with(getApplicationContext())
-                .load("http://192.168.78.1:8081/OrderMeAPI/rest/login")
-                .setBodyParameter("identifier", "foo")
-                .asString().setCallback(new FutureCallback<String>() {
-            @Override
-            public void onCompleted(Exception e, String result) {
-                try {
-                    JSONObject json = new JSONObject(result);
-                } catch (JSONException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
+        boolean flag = UserService.authenticate(getApplicationContext(), email, password);
         if ("minhhoang@gmail.com".equals(email) && "12345678".equals(password)) {
             return true;
         }
