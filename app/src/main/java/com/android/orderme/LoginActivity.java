@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.android.entity.User;
 import com.android.utils.API;
+import com.android.utils.SessionManagement;
 import com.google.gson.Gson;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -40,13 +41,17 @@ public class LoginActivity extends AppCompatActivity {
     private View mProgressView;
     private View mLoginFormView;
 
-    private static User user;
+    private User user;
+    private SessionManagement sessionManagement;
     private static Logger logger = Logger.getLogger("UserService");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sessionManagement = new SessionManagement(getApplicationContext());
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -139,6 +144,8 @@ public class LoginActivity extends AppCompatActivity {
         userReq.setEmail(email);
         userReq.setPassword(password);
 
+        //TODO: update timeLogin + lastLoginDate
+
         Ion.with(context)
                 .load(API.LOGIN)
                 .setJsonPojoBody(userReq)
@@ -155,6 +162,7 @@ public class LoginActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     user = gson.fromJson(result, User.class);
                     if (user != null) {
+                        sessionManagement.saveLoginSession(user);
                         Intent i = new Intent(getApplicationContext(), WelcomeActitvity.class);
                         startActivity(i);
                         logger.info("Called API and login successfully");
@@ -167,8 +175,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-        //TODO: set name to sharePreference (Session management)
     }
 
     private void showError() {
