@@ -7,19 +7,29 @@ import android.widget.Toast;
 
 import com.android.utils.SessionManagement;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class WelcomeActitvity extends AppCompatActivity {
 
     private SessionManagement sessionManagement;
-    TextView welcome;
+    @InjectView(R.id.tv_welcome) TextView welcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        ButterKnife.inject(this);
+
         sessionManagement = new SessionManagement(getApplicationContext());
 
-        String name = sessionManagement.getPref().getString("name", null);
-        welcome.setText("Hi " + name + ", welcome to OrderMe");
+        if (sessionManagement.getPref() != null) {
+            String name = sessionManagement.getPref().getString("name", null);
+            if (name == null) {
+                name = "User";
+            }
+            welcome.setText("Hi " + name + ", welcome to OrderMe");
+        }
     }
 }

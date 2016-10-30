@@ -78,8 +78,22 @@
                 android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:textColor="@color/colorAccent"
+                android:visibility="invisible"
                 android:id="@+id/errorLog" />
+
+
+            <TextView
+                android:text="Not a member? Register here"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_register"
+                android:contextClickable="true"
+                android:focusable="true"
+                android:textSize="14dp"
+                android:layout_marginTop="50dp"/>
 
         </LinearLayout>
     </ScrollView>
+
+
 </LinearLayout>
