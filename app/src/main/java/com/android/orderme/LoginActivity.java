@@ -3,6 +3,7 @@ package com.android.orderme;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.annotation.TargetApi;
@@ -20,11 +21,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.com.android.service.UserService;
+import com.android.entity.User;
+import com.android.utils.API;
+import com.google.gson.Gson;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.logging.Logger;
 
 /**
  * A login screen that offers login via email/password.
@@ -38,6 +44,11 @@ public class LoginActivity extends AppCompatActivity {
     private TextView errorLog;
 
     ProgressDialog progressDialog;
+
+
+    private static User user;
+    private static boolean res;
+    private static Logger logger = Logger.getLogger("UserService");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,14 +130,7 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog.setMessage("Doi ti di");
             progressDialog.setCancelable(false);
             progressDialog.show();
-            boolean res = UserService.authenticate(getApplicationContext(), progressDialog, email, password);
-            if (res) {
-                Intent i = new Intent(getApplicationContext(), WelcomeActitvity.class);
-                startActivity(i);
-            } else {
-                errorLog.setVisibility(View.VISIBLE);
-                errorLog.setText("Email and password is incorrect.");
-            }
+            boolean res = authenticate(getApplicationContext(), email, password);
         }
     }
 
@@ -138,6 +142,50 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
+    }
+
+    private boolean authenticate(Context context, String email, String password) {
+
+        progressDialog.show();
+        User userReq = new User();
+        userReq.setEmail(email);
+        userReq.setPassword(password);
+
+        Ion.with(context)
+                .load(API.LOGIN)
+                .setJsonPojoBody(userReq)
+                .asString().setCallback(new FutureCallback<String>() {
+            @Override
+            public void onCompleted(Exception e, String result) {
+                try {
+                    progressDialog.hide();
+                    if (e != null || result == null) {
+                        res = false;
+                        errorLog.setVisibility(View.VISIBLE);
+                        errorLog.setText("Email and password is incorrect.");
+                        logger.severe("Fail to login");
+                        return;
+                    }
+                    Gson gson = new Gson();
+                    user = gson.fromJson(result, User.class);
+                    if (user != null) {
+                        res = true;
+                        Intent i = new Intent(getApplicationContext(), WelcomeActitvity.class);
+                        startActivity(i);
+                        logger.info("Called API and login successfully");
+                    }
+                } catch (Exception ex) {
+                    res = false;
+                    errorLog.setVisibility(View.VISIBLE);
+                    errorLog.setText("Email and password is incorrect.");
+                    logger.severe("Fail to login. Exception occurred");
+                }
+            }
+        });
+
+        //TODO: set name to sharePreference (Session management)
+
+        return res;
     }
 }
 
