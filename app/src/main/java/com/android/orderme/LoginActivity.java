@@ -1,6 +1,11 @@
 package com.android.orderme;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
+import android.annotation.TargetApi;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -32,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button mEmailSignInButton;
     private TextView errorLog;
 
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+        //TODO: remove hardcode
         mEmailView.setText("minhhoang@gmail.com");
         mPasswordView.setText("12345678");
     }
@@ -106,8 +115,12 @@ public class LoginActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            if (authentication(email, password)) {
-                //showProgress(true);
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Doi ti di");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            boolean res = UserService.authenticate(getApplicationContext(), progressDialog, email, password);
+            if (res) {
                 Intent i = new Intent(getApplicationContext(), WelcomeActitvity.class);
                 startActivity(i);
             } else {
@@ -115,10 +128,6 @@ public class LoginActivity extends AppCompatActivity {
                 errorLog.setText("Email and password is incorrect.");
             }
         }
-    }
-
-    private boolean authentication(String email, String password) {
-        return UserService.authenticate(getApplicationContext(), email, password);
     }
 
     private boolean isEmailValid(String email) {

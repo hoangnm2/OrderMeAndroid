@@ -1,8 +1,10 @@
 package com.android.com.android.service;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.android.entity.User;
+import com.android.orderme.LoginActivity;
 import com.android.utils.API;
 import com.google.gson.Gson;
 import com.koushikdutta.async.future.FutureCallback;
@@ -23,7 +25,7 @@ public class UserService {
     private static boolean res;
     private static Logger logger = Logger.getLogger("UserService");
 
-    public static boolean authenticate(Context context, String email, String password) {
+    public static boolean authenticate(Context context, final ProgressDialog progressDialog, String email, String password) {
 
         User userReq = new User();
         userReq.setEmail(email);
@@ -36,6 +38,7 @@ public class UserService {
             @Override
             public void onCompleted(Exception e, String result) {
                 try {
+                    progressDialog.hide();
                     if (e != null || result == null) {
                         res = false;
                         logger.severe("Fail to login");
