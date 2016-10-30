@@ -4,14 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.android.entity.User;
-import com.android.orderme.LoginActivity;
 import com.android.utils.API;
 import com.google.gson.Gson;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.logging.Logger;
 

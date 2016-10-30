@@ -2,14 +2,12 @@ package com.android.orderme;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.app.ProgressDialog;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.annotation.TargetApi;
-import android.support.v7.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,15 +18,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.com.android.service.UserService;
 import com.android.entity.User;
 import com.android.utils.API;
 import com.google.gson.Gson;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.logging.Logger;
 
@@ -42,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private Button mEmailSignInButton;
     private TextView errorLog;
-
-    //ProgressDialog progressDialog;
 
     private View mProgressView;
     private View mLoginFormView;
@@ -125,14 +117,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
             focusView.requestFocus();
         } else {
-            /*progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Doi ti di");
-            progressDialog.setCancelable(false);
-            progressDialog.show();*/
             showProgress(true);
             authenticate(getApplicationContext(), email, password);
         }
@@ -162,8 +148,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     showProgress(false);
                     if (e != null || result == null) {
-                        errorLog.setVisibility(View.VISIBLE);
-                        errorLog.setText("Email and password is incorrect.");
+                        showError();
                         logger.severe("Fail to login");
                         return;
                     }
@@ -173,16 +158,22 @@ public class LoginActivity extends AppCompatActivity {
                         Intent i = new Intent(getApplicationContext(), WelcomeActitvity.class);
                         startActivity(i);
                         logger.info("Called API and login successfully");
+                    } else {
+                        showError();
                     }
                 } catch (Exception ex) {
-                    errorLog.setVisibility(View.VISIBLE);
-                    errorLog.setText("Email and password is incorrect.");
+                    showError();
                     logger.severe("Fail to login. Exception occurred");
                 }
             }
         });
 
         //TODO: set name to sharePreference (Session management)
+    }
+
+    private void showError() {
+        errorLog.setVisibility(View.VISIBLE);
+        errorLog.setText("Email and password is incorrect.");
     }
 
     /**
