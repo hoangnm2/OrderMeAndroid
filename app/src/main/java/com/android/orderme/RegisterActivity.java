@@ -1,27 +1,21 @@
 package com.android.orderme;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.entity.User;
 import com.android.utils.API;
 import com.android.utils.ValidationUtils;
-import com.google.gson.Gson;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
 import java.util.logging.Logger;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -54,6 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 User user = new User();
                 user.setEmail(email.getText().toString());
+                user.setPassword(password1.getText().toString());
+                register(getApplicationContext(),user);
             }
         });
 
@@ -72,14 +68,14 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
 
-        if (password1.getText() == null || TextUtils.isEmpty(password1.getText().toString()) || ValidationUtils.isPasswordValid(password1.getText().toString())) {
+        if (password1.getText() == null || TextUtils.isEmpty(password1.getText().toString()) || !ValidationUtils.isPasswordValid(password1.getText().toString())) {
             password1.setError("Password is not valid");
             password1.requestFocus();
             return false;
         }
         String pass1 = password1.getText().toString();
 
-        if (password2.getText() != null || !pass1.equals(password2.getText().toString())) {
+        if (password2.getText() == null || !pass1.equals(password2.getText().toString())) {
             password2.setError("Password does not match");
             password2.requestFocus();
             return false;
@@ -91,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void register(Context context, User userReq) {
 
         Ion.with(context)
-                .load(API.LOGIN)
+                .load(API.REGISTER)
                 .setJsonPojoBody(userReq)
                 .asString().setCallback(new FutureCallback<String>() {
             @Override

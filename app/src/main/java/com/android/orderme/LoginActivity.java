@@ -17,7 +17,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.entity.User;
 import com.android.utils.API;
@@ -86,9 +85,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: remove hardcode
-        mEmailView.setText("minhhoang@gmail.com");
-        mPasswordView.setText("12345678");
+
+        mEmailView.setText("1234@gmail.com");
+        mPasswordView.setText("1234567");
     }
 
     /**
@@ -141,7 +140,6 @@ public class LoginActivity extends AppCompatActivity {
         userReq.setEmail(email);
         userReq.setPassword(password);
 
-        //TODO: update timeLogin + lastLoginDate
 
         Ion.with(context)
                 .load(API.LOGIN)

@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/prompt_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:text="1234@gmail.com" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -34,7 +35,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/prompt_name"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:text="1234" />
 
     </android.support.design.widget.TextInputLayout>
 
