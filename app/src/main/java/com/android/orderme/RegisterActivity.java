@@ -1,6 +1,7 @@
 package com.android.orderme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private Logger logger = Logger.getLogger("RegisterActivity");
+    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     TextView errorLog;
     EditText email, name, password1, password2;
@@ -93,17 +94,30 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onCompleted(Exception e, String result) {
                 try {
-
+                    if (e != null || result == null) {
+                        showError(e);
+                        return;
+                    }
+                    Integer res = Integer.parseInt(result);
+                    if (res == 1) {
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(i);
+                    } else {
+                        email.setError("Email exists! Please user another email.");
+                        email.requestFocus();
+                        return;
+                    }
                 } catch (Exception ex) {
-                    showError();
-                    logger.severe("Fail to login. Exception occurred");
+                    showError(e);
+
                 }
             }
         });
     }
 
-    private void showError() {
+    private void showError(Exception e) {
+        logger.severe("Fail to register. Exception occurred: " + e.getMessage());
         errorLog.setVisibility(View.VISIBLE);
-        errorLog.setText("Email's already existed");
+        errorLog.setText("Fail to register. Please make sure you have connect to internet");
     }
 }

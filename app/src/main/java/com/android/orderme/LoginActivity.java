@@ -23,6 +23,7 @@ import com.android.utils.API;
 import com.android.utils.SessionManagement;
 import com.android.utils.ValidationUtils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
@@ -154,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                         logger.severe("Fail to login");
                         return;
                     }
-                    Gson gson = new Gson();
+                    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
                     user = gson.fromJson(result, User.class);
                     if (user != null) {
                         sessionManagement.saveLoginSession(user);
