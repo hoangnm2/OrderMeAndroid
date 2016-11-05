@@ -40,14 +40,21 @@ import butterknife.InjectView;
 public class LoginActivity extends AppCompatActivity {
 
     // UI references.
-    @InjectView(R.id.email) AutoCompleteTextView mEmailView;
-    @InjectView(R.id.password) EditText mPasswordView;
-    @InjectView(R.id.email_sign_in_button) Button mEmailSignInButton;
-    @InjectView(R.id.errorLog) TextView errorLog;
-    @InjectView(R.id.tv_register) TextView registerLink;
+    @InjectView(R.id.email)
+    AutoCompleteTextView mEmailView;
+    @InjectView(R.id.password)
+    EditText mPasswordView;
+    @InjectView(R.id.email_sign_in_button)
+    Button mEmailSignInButton;
+    @InjectView(R.id.errorLog)
+    TextView errorLog;
+    @InjectView(R.id.tv_register)
+    TextView registerLink;
 
-    @InjectView(R.id.login_progress) View mProgressView;
-    @InjectView(R.id.login_form) View mLoginFormView;
+    @InjectView(R.id.login_progress)
+    View mProgressView;
+    @InjectView(R.id.login_form)
+    View mLoginFormView;
 
     private User user;
     private SessionManagement sessionManagement;
@@ -68,7 +75,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(), WelcomeActitvity.class);
             startActivity(i);
         }
-
 
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {

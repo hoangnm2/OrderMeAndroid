@@ -25,10 +25,7 @@ public class WelcomeActitvity extends AppCompatActivity {
         sessionManagement = new SessionManagement(getApplicationContext());
 
         if (sessionManagement.getPref() != null) {
-            String name = sessionManagement.getPref().getString("name", null);
-            if (name == null) {
-                name = "User";
-            }
+            String name = sessionManagement.getPref().getString(SessionManagement.SessionParam.USER_NAME, "John Doe,");
             welcome.setText("Hi " + name + ", welcome to OrderMe");
         }
     }

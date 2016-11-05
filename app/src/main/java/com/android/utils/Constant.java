@@ -6,5 +6,5 @@ package com.android.utils;
 
 public class Constant {
 
-    public static final String RESULT_OK = "1";
+    public static final int VERSION = 1;
 }
