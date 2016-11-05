@@ -5,8 +5,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -58,7 +60,16 @@ public class LoginActivity extends AppCompatActivity {
 
         ButterKnife.inject(this);
 
+        // If already logined, go to welcome activity
         sessionManagement = new SessionManagement(getApplicationContext());
+        SharedPreferences pref = sessionManagement.getPref();
+        Boolean isLogin = pref.getBoolean(SessionManagement.SessionParam.IS_LOGIN, false);
+        if (isLogin == true) {
+            Intent i = new Intent(getApplicationContext(), WelcomeActitvity.class);
+            startActivity(i);
+        }
+
+
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -85,10 +96,6 @@ public class LoginActivity extends AppCompatActivity {
                 attemptLogin();
             }
         });
-
-
-        mEmailView.setText("1234@gmail.com");
-        mPasswordView.setText("1234567");
     }
 
     /**

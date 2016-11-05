@@ -6,7 +6,7 @@ package com.android.utils;
 
 public class API {
 
-    private static final String ROOT = "http://192.168.1.13:8080/OrderMeAPI/rest/";
+    private static final String ROOT = "http://192.168.1.101:8080/OrderMeAPI/rest/";
 
     public static final String LOGIN = ROOT + "user/login";
 

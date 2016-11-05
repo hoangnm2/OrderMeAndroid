@@ -26,10 +26,10 @@ public class SessionManagement {
     }
 
     public void saveLoginSession(User user) {
-        editor.putString("email", user.getEmail());
-        editor.putString("name", user.getName());
-        editor.putBoolean("isLogin", true);
-        editor.putString("role", user.getRole().name());
+        editor.putString(SessionParam.USER_EMAIL, user.getEmail());
+        editor.putString(SessionParam.USER_NAME, user.getName());
+        editor.putString(SessionParam.USER_ROLE, user.getRole().name());
+        editor.putBoolean(SessionParam.IS_LOGIN, true);
         editor.commit();
 
     }
@@ -40,5 +40,12 @@ public class SessionManagement {
 
     public void setPref(SharedPreferences pref) {
         this.pref = pref;
+    }
+
+    public class SessionParam {
+        public static final String USER_EMAIL = "isLogin";
+        public static final String USER_NAME = "isLogin";
+        public static final String USER_ROLE = "role";
+        public static final String IS_LOGIN = "isLogin";
     }
 }
