@@ -15,4 +15,12 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_wrong_authentication">Email and password is incorrect.</string>
 
+    <string name="action_search">search</string>
+    <string name="action_location_found">location</string>
+    <string name="action_refresh">refresh</string>
+    <string name="action_help">help</string>
+    <string name="action_check_updates">update</string>
+    <string name="title_activity_location">Location</string>
+    <string name="title_activity_main">Main</string>
+
 </resources>
