@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    <!-- Search / luon luon hien thi -->
+    <item android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:title="@string/action_search"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/action_cart"
+        android:title="Giỏ hàng"
+        android:icon="@mipmap/ic_cart"
+        app:showAsAction="always"
+        app:actionLayout="@layout/customer_item_cart"
+
+        />
+    <item
+        android:icon="@drawable/ic_menu_black_24dp"
+        android:title="More"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/itemLogin"
+                android:title="Đăng nhập"
+                android:icon="@drawable/ic_sentiment_satisfied_black_24dp"
+                />
+            <item
+                android:id="@+id/itemNotification"
+                android:title="Thông báo"
+                android:icon="@drawable/ic_notifications_black_24dp"
+                />
+            <item
+                android:id="@+id/itemFavorite"
+                android:title="Ưu thích"
+                android:icon="@drawable/ic_favorite_black_24dp"
+                />
+            <item
+                android:id="@+id/itemMenu"
+                android:title="Menu"
+                android:icon="@drawable/ic_restaurant_black_24dp"
+                />
+        </menu>
+    </item>
+
+
+
+    <!-- Location Found -->
+    <!--<item android:id="@+id/action_location_found"
+        android:icon="@drawable/ic_action_location_found"
+        android:title="@string/action_location_found"
+        app:showAsAction="ifRoom" />
+
+    &lt;!&ndash; Refresh &ndash;&gt;
+    <item android:id="@+id/action_refresh"
+        android:icon="@drawable/ic_action_refresh"
+        android:title="@string/action_refresh"
+        app:showAsAction="ifRoom" />
+
+    &lt;!&ndash; Help &ndash;&gt;
+    <item android:id="@+id/action_help"
+        android:icon="@drawable/ic_action_help"
+        android:title="@string/action_help"
+        app:showAsAction="never"/>
+
+    &lt;!&ndash; Check updates &ndash;&gt;
+    <item android:id="@+id/action_check_updates"
+        android:icon="@drawable/ic_action_refresh"
+        android:title="@string/action_check_updates"
+        app:showAsAction="never" />-->
+
+</menu>
