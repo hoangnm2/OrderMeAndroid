@@ -23,4 +23,47 @@
     <string name="title_activity_location">Location</string>
     <string name="title_activity_main">Main</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Dish Details String -->
+    <string-array name="dish_photos">
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+        <item>http://dulich.baobinhthuan.com.vn/data/news/2012/10/5006/6.JPG</item>
+    </string-array>
+
+
 </resources>

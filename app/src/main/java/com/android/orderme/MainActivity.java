@@ -1,5 +1,6 @@
 package com.android.orderme;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -9,9 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.adapter.ViewPagerAdapter;
+import com.android.fragment.MenuFragment;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements MenuFragment.OnFragmentInteractionListener{
 
     Toolbar toolbar;
     TabLayout tabLayout;
@@ -67,5 +70,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

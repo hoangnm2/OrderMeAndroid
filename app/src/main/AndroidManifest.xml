@@ -19,18 +19,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/app_name"></activity>
         <activity android:name=".WelcomeActitvity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ListActivity">
-
-        </activity>
         <activity
             android:name=".LocationActivity"
             android:label="@string/title_activity_location"
@@ -42,8 +33,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".DishDetailsActivity"></activity>
     </application>
 
 </manifest>

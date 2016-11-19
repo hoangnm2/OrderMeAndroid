@@ -2,9 +2,11 @@ package com.android.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +25,6 @@ public class ListAdapter extends BaseAdapter {
     private ArrayList<Dish> listDish = new ArrayList<>();
     private Context context;
 
-
     public ListAdapter(ArrayList<Dish> listDish,Context context) {
         this.listDish= listDish;
         this.context = context;
@@ -41,6 +42,7 @@ public class ListAdapter extends BaseAdapter {
             return listDish.size();
         return 0;
     }
+
 
     @Override
     public Object getItem(int position) {

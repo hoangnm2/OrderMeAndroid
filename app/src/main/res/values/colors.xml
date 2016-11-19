@@ -7,4 +7,7 @@
     <color name="colorWhite">#ffffff</color>
     <color name="bgLogo">#f67122</color>
     <color name="colorGray">#CCC</color>
+
+    <!-- Dish Details Colors -->
+    <color name="dishact_tabbg">#76bbe8</color>
 </resources>
